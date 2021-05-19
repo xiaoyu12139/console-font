@@ -57,6 +57,15 @@ public class Demo01 extends Frame {
 	}
 
 	public static void main(String[] args) {
-		new Demo01();
+//		new Demo01();
+		String s = "      **\r\n" + 
+				"     /**\r\n" + 
+				"     /**\r\n" + 
+				"  ******\r\n" + 
+				" **///**\r\n" + 
+				"/**  /**\r\n" + 
+				"//******\r\n" + 
+				" ////// ";
+		System.out.println(s + " " + s);
 	}
 }

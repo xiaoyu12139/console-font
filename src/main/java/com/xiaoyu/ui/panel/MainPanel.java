@@ -5,7 +5,7 @@ import javax.swing.JTabbedPane;
 public class MainPanel extends JTabbedPane{
 	
 	public MainPanel() {
-		add("ASCIIÎÄ×Ö", new FontTab());
+		add("ASCII×ÖÄ¸", new FontTab());
 		add("ASCIIÒÕÊõ×Ö/Í¼", new ArtTab());
 	}
 }
