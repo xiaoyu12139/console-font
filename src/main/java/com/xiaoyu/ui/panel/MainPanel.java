@@ -1,5 +1,11 @@
 package com.xiaoyu.ui.panel;
 
-public class MainPanel {
+import javax.swing.JTabbedPane;
 
+public class MainPanel extends JTabbedPane{
+	
+	public MainPanel() {
+		add("ASCIIÎÄ×Ö", new FontTab());
+		add("ASCIIÒÕÊõ×Ö/Í¼", new ArtTab());
+	}
 }
