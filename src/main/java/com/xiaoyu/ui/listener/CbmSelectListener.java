@@ -25,7 +25,6 @@ public class CbmSelectListener implements ItemListener{
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if(e.getStateChange() != ItemEvent.DESELECTED) {
-			Map<String, Map<Integer, String>> map = SelectFont.map;
 			File file = new File(StrUtil.FONTS_DIR);
 			Stream.of(file.listFiles()).forEach(temp -> {
 				if(temp.getName().equals(e.getItem())) {
@@ -47,7 +46,7 @@ public class CbmSelectListener implements ItemListener{
 					}
 					r.close();
 					int valueOf = Integer.valueOf(temp.getName());
-					map.put((char)valueOf + "", res);
+					SelectFont.map.put((char)valueOf + "", res);
 				}
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();

@@ -28,6 +28,10 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+	
+	public static void run() {
+		new MainFrame();
+	}
 
 	public static void main(String[] args) {
 		new MainFrame();
