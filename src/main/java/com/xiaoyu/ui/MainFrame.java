@@ -9,10 +9,10 @@ import javax.swing.WindowConstants;
 
 import com.xiaoyu.ui.panel.MainPanel;
 
-public class MainFrame extends JFrame{
-	
+public class MainFrame extends JFrame {
+
 	private MainPanel mainPanel;
-	
+
 	public MainFrame() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -22,15 +22,15 @@ public class MainFrame extends JFrame{
 		mainPanel = new MainPanel();
 		setLayout(new BorderLayout());
 		getContentPane().add(mainPanel);
-		
+
 		setSize(500, 400);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
+
 	public static void main(String[] args) {
 		new MainFrame();
 	}
-	
+
 }

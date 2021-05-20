@@ -4,5 +4,5 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SelectFont {
-	public static Map<String, String> map = new HashMap(1);
+	public static Map<String, Map<Integer, String>> map = new HashMap(1);
 }

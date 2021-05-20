@@ -35,6 +35,7 @@ public class FetchFontResource {
 	
 	public CloseableHttpClient client = HttpClientBuilder.create().build();
 	public String leter = "q w e r t y u i o p a s d f g h j k l z x c v b n m";
+	public String upLeter = "Q W E R T Y U I O P A S D F G H J K L Z X C V B N M";
 	public String symbol = "? ! ; = + - @ % $ # ^ & * ( ) { } [ ] | \\ / . ~ ` : _";
 	public String number = "0 1 2 3 4 5 6 7 8 9";
 	public String baseUrl =  "https://www.bootschool.net/ascii";
@@ -49,7 +50,7 @@ public class FetchFontResource {
 	}
 	
 	public void run() {
-//		getFont();
+		getFont();
 //		getStyle();
 	}
 	
@@ -58,11 +59,11 @@ public class FetchFontResource {
 	public void getFont() {
 		try {
 			//创建fonts目录，如果没有的话
-			String path = "D:\\My Documents\\桌面\\console-font\\target\\conf\\" + "fonts";
+			String path = "D:\\my\\resource\\resources\\fonts";
 			File file = new File(path);
 			if(!file.exists()) file.mkdir();
 			log.info("开始拉取console字体，创建目录：" + path);
-			String kinds = leter + " " + symbol + " " + number;
+			String kinds = leter + " " + symbol + " " + number + " " + upLeter;
 			HttpGet get = new HttpGet(baseUrl);
 			CloseableHttpResponse get2Form = client.execute(get);
 			List<String> fonts = getFontForm(EntityUtils.toString(get2Form.getEntity(), "utf-8"));
@@ -71,11 +72,13 @@ public class FetchFontResource {
 				String[] split = kinds.split(" ");
 				//遍历每种字符
 				for(String str : split) {
-					String html = getAscll(font, str);
 					String tempPath = path + "\\" + font;
-					new File(tempPath).mkdir();
+					File f = new File(tempPath);
+					if(!f.exists()) f.mkdir();
 					File file2 = new File(tempPath + "\\" + (int)str.charAt(0));
-					file2.createNewFile();
+					if(file2.exists()) continue;
+//					if(!file2.exists()) file2.createNewFile();
+					String html = getAscll(font, str);
 					log.info("创建文件:" + file2.getAbsolutePath() + ".并写入……");
 					parseAndStore(html, file2);
 				}

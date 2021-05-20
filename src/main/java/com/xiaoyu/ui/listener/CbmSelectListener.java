@@ -3,14 +3,13 @@ package com.xiaoyu.ui.listener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import com.xiaoyu.model.SelectFont;
@@ -26,6 +25,7 @@ public class CbmSelectListener implements ItemListener{
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if(e.getStateChange() != ItemEvent.DESELECTED) {
+			Map<String, Map<Integer, String>> map = SelectFont.map;
 			File file = new File(StrUtil.FONTS_DIR);
 			Stream.of(file.listFiles()).forEach(temp -> {
 				if(temp.getName().equals(e.getItem())) {
@@ -37,15 +37,17 @@ public class CbmSelectListener implements ItemListener{
 			log.info(target.getAbsolutePath());
 			try {
 				for(File temp : target.listFiles()) {
-					BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(temp), "UTF-8"));
+					BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(temp), "utf-8"));
 					String s = null;
-					String res = "";
+					Map<Integer, String> res = new HashMap<>(1);
+					int index = 0;
 					while((s = r.readLine()) != null) {
-						res += s + "\n";
+						if(!s.equals(""))
+							res.put(index++, s);
 					}
 					r.close();
 					int valueOf = Integer.valueOf(temp.getName());
-					SelectFont.map.put((char)valueOf + "", res);
+					map.put((char)valueOf + "", res);
 				}
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();

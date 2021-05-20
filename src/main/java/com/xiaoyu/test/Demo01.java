@@ -1,13 +1,27 @@
 package com.xiaoyu.test;
 
 import java.awt.Button;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Demo01 extends Frame {
 	Button b0 = new Button("0");
 	Button b1 = new Button("1");
@@ -56,16 +70,9 @@ public class Demo01 extends Frame {
 		setVisible(true);
 	}
 
-	public static void main(String[] args) {
-//		new Demo01();
-		String s = "      **\r\n" + 
-				"     /**\r\n" + 
-				"     /**\r\n" + 
-				"  ******\r\n" + 
-				" **///**\r\n" + 
-				"/**  /**\r\n" + 
-				"//******\r\n" + 
-				" ////// ";
-		System.out.println(s + " " + s);
+	public static void main(String[] args) throws IOException {
+		System.out.println(Demo01.class.getResource("/"));
+		InputStream resourceAsStream = Demo01.class.getClassLoader().getResourceAsStream("/X.png");
+		System.out.println(resourceAsStream);
 	}
 }

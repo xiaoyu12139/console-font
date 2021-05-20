@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.File;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,9 +25,9 @@ public class FontTab extends JPanel{
 	
 	public FontTab() {
 		GridBagLayout layout = new GridBagLayout();
-		layout.columnWidths = new int[] {0};
+		layout.columnWidths = new int[] {0, 0};
 		layout.rowHeights = new int[] {0, 0, 0};
-		layout.columnWeights = new double[] {1.0};
+		layout.columnWeights = new double[] {1};
 		layout.rowWeights = new double[] {0, 0, 1};
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(layout);
@@ -35,6 +36,8 @@ public class FontTab extends JPanel{
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 0;
 		c.gridy = 0;
+		c.gridwidth = 2;
+		c.gridheight = 1;
 		layout.setConstraints(cbm, c);
 		add(cbm);
 		
@@ -42,8 +45,21 @@ public class FontTab extends JPanel{
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 0;
 		c.gridy = 1;
+		c.weightx = 0.8;
+		c.gridheight = 1;
+		c.gridwidth = 1;
 		layout.setConstraints(in, c);
 		add(in);
+		
+		JButton b = new JButton("press");
+		c.fill = GridBagConstraints.BOTH;
+		c.gridx = 1;
+		c.gridy = 1;
+		c.weightx = 0.2;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		layout.setConstraints(b, c);
+		add(b);
 		
 		out = new JTextArea();
 		JScrollPane sp = new JScrollPane(out);
@@ -52,11 +68,13 @@ public class FontTab extends JPanel{
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 0;
 		c.gridy = 2;
+		c.gridwidth = 2;
 		layout.setConstraints(sp, c);
 		add(sp);
 		
 		in.addKeyListener(new InputTextListener(this));
 		cbm.addItemListener(new CbmSelectListener());
+		b.addActionListener(new InputTextListener(this));
 		initFontBox();
 	}
 	
